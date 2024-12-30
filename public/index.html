@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Chat</title>
+    <style>
+        .user-joined {
+            color: green;
+        }
+        .user-left {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Real-Time Chat</h1>
+    <div id="chat-box" style="height: 300px; overflow-y: scroll; border: 1px solid black;"></div>
+    <input id="message-input" type="text" placeholder="Type your message">
+    <button id="send-button">Send</button>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
