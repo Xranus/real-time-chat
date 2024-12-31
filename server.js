@@ -34,7 +34,7 @@ io.on('connection', (socket) => {
 
     // Listen for stopTyping event
     socket.on('stopTyping', () => {
-        socket.broadcast.emit('stopTyping'); // Notify others
+        socket.broadcast.emit('notTyping'); // Notify others
     });
     // Listen for chat messages
     socket.on('chatMessage', (data) => {

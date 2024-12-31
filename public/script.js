@@ -4,6 +4,8 @@ const chatBox = document.getElementById('chat-box');
 const messageInput = document.getElementById('message-input');
 const sendButton = document.getElementById('send-button');
 const typingText = document.createElement('p');
+typingText.id = "typing-text"
+chatBox.appendChild(typingText)
 // Prompt user for their name when they connect
 const username = prompt('Enter your name:');
 if (username.trim() !== '') {
@@ -24,12 +26,15 @@ messageInput.addEventListener('keydown', (e) => {
         sendButton.click()
     }
 })
-messageInput.addEventListener('input',() => {
-    if(messageInput.value.trim() != ''){
-        socket.emit('typing')
-    }
-    socket.emit('stopTyping')
-})
+let typingTimeout;
+messageInput.addEventListener('input', () => {
+    socket.emit('typing');
+    clearTimeout(typingTimeout);
+    typingTimeout = setTimeout(() => {
+        socket.emit('stopTyping');
+    }, 1000); // 2 seconds
+});
+
 
 socket.on('typing', username => {
     typingText.textContent = `${username} is typing...`;
